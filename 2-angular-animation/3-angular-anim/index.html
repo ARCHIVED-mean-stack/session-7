@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>animation 3</title>
+
+	<script src="https://code.angularjs.org/1.4.2/angular.js"></script>
+	<script src="https://code.angularjs.org/1.4.2/angular-animate.js"></script>
+
+	<script>
+
+	angular.module('myApp', ['ngAnimate']).
+	controller('ItemCtrl', function($scope){
+		$scope.items = [
+		{name: "Vessel"},
+		{name: "Booty"},
+		{name: "Loot"},
+		{name: "Pipe"},
+		{name: "Treasure"},
+		{name: "Arrgh"}
+		];
+		$scope.removeItem = function(index) {
+			$scope.items.splice(index, 1);
+		}
+		$scope.addItem = function(){
+			$scope.items.push($scope.item);
+			$scope.item = {};
+		}
+	});
+
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="skeleton.css">
+
+	<style>
+
+	.text-center { 
+		text-align: center;
+	}
+	li span { 
+		float: right; 
+		cursor: pointer;
+	}
+	.fade { 
+		transition: all .2s linear;
+	}
+	.fade.ng-enter { 
+		opacity: 0; 
+	}
+	.fade.ng-enter.ng-enter-active {
+		opacity: 1;
+	}
+	.fade.ng-leave { 
+		opacity: 1; 
+	}
+	.fade.ng-leave.ng-leave-active {
+		opacity: 0;
+	}
+
+	</style>
+
+</head>
+
+<body>
+	<div class="container" ng-app="myApp" ng-controller="ItemCtrl">
+
+		<div class="row">
+			<div class="one-half column offset-by-three">
+				<h1 class="text-center">Portfolios</h1>
+				<ul>
+					<li ng-repeat="item in items" class="fade">
+						{{ item.name }}
+						<span ng-click="removeItem($index)">X</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="one-half column offset-by-three">
+				<input type="text" ng-model="item.name">
+				<button class="button-primary" ng-click="addItem()">Add Item</button>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

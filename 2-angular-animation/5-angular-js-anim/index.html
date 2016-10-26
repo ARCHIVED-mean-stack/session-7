@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>animation 5</title>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://code.angularjs.org/1.4.2/angular.js"></script>
+  <script src="https://code.angularjs.org/1.4.2/angular-animate.js"></script>
+
+  <script>
+var app = angular.module('myApp', ['ngAnimate'])
+.animation('.fade', function() {
+  return {
+    enter: function(element, done) {
+      element.css('display', 'none');
+      $(element).fadeIn(1000, function() {
+        done();
+      });
+    },
+    leave: function(element, done) {
+      $(element).fadeOut(1000, function() {
+        done();
+      });
+    },
+    move: function(element, done) {
+      element.css('display', 'none');
+      $(element).slideDown(500, function() {
+        done();
+      });
+    }
+  }
+})
+.controller('ItemCtrl', function($scope) {
+  $scope.items = [
+    {name: "Lunchmeat"},
+    {name: "Bread"},
+    {name: "Milk"},
+    {name: "Mustard"},
+    {name: "Cheese"}
+  ];
+  $scope.addItem = function() {
+    $scope.items.push($scope.item);
+    $scope.item = {};
+  };
+  $scope.removeItem = function(index) {
+    $scope.items.splice(index, 1);
+  };
+  $scope.bottomToTop = function() {
+    $scope.items.unshift($scope.items.pop());
+  };
+});
+  </script>
+
+  <link rel="stylesheet" href="skeleton.css">
+<style src=""></style>
+<style>
+.text-center {
+  text-align: center;
+}
+li span {
+  float: right;
+  cursor: pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container" ng-app="myApp"  ng-controller="ItemCtrl">
+  <div class="row">
+    <div class="one-half column offset-by-three">
+      <h1 class="text-center">Groceries</h1>
+      <ul>
+        <li ng-repeat="item in items" class="fade">
+          {{item.name}}
+          <span ng-click="removeItem($index)">X</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="one-half column offset-by-three">
+      <input type="text" ng-model="item.name" />
+      <button class="button-primary" ng-click="addItem()">Add Item</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="one-half column offset-by-three">
+      <button ng-click="bottomToTop()">Move Bottom Item to Top</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>animation 3</title>
+
+	<script src="https://code.angularjs.org/1.4.2/angular.js"></script>
+	<script src="https://code.angularjs.org/1.4.2/angular-animate.js"></script>
+
+	<script>
+
+	angular.module('myApp', ['ngAnimate']).
+	controller('ItemCtrl', function($scope){
+		$scope.items = [
+		{name: "Vessel"},
+		{name: "Booty"},
+		{name: "Loot"},
+		{name: "Pipe"},
+		{name: "Treasure"},
+		{name: "Arrgh"}
+		];
+		$scope.removeItem = function(index) {
+			$scope.items.splice(index, 1);
+		}
+		$scope.addItem = function(){
+			$scope.items.push($scope.item);
+			$scope.item = {};
+		}
+		$scope.bottomToTop = function(){
+			$scope.items.unshift($scope.items.pop());
+		}
+	});
+
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="skeleton.css">
+
+	<style>
+
+	.text-center { 
+		text-align: center;
+	}
+	li span { 
+		float: right; 
+		cursor: pointer;
+	}
+	.fade.ng-enter { 
+		animation: 2s appear; 
+	}
+	.fade.ng-leave { 
+		animation: 1s disappear; 
+	}
+
+	@keyframes appear {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+	@keyframes disappear {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
+	}
+
+
+
+
+	</style>
+
+</head>
+
+<body>
+	<div class="container" ng-app="myApp" ng-controller="ItemCtrl">
+
+		<div class="row">
+			<div class="one-half column offset-by-three">
+				<h1 class="text-center">Portfolios</h1>
+				<ul>
+					<li ng-repeat="item in items" class="fade">
+						{{ item.name }}
+						<span ng-click="removeItem($index)">X</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="one-half column offset-by-three">
+				<input type="text" ng-model="item.name">
+				<button class="button-primary" ng-click="addItem()">Add Item</button>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="one-half column offset-by-three">
+				<button class="button-primary" ng-click="bottomToTop()">Move To Top</button>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
