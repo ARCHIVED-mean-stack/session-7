@@ -32,6 +32,9 @@ angular.module('myApp').component('manageList', {
 			self.items.push(self.item);
 			self.item = {};
 		}
+		self.bottomToTop = function () {
+			self.items.unshift(self.items.pop());
+		};
 	}
 });
 

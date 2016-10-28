@@ -60,22 +60,28 @@ li span {
     cursor: pointer;
 }
 
-.fade {
-    transition: all .2s linear;
-}
-
 .fade.ng-enter {
-    opacity: 0;
-}
-
-.fade.ng-enter.ng-enter-active {
-    opacity: 1;
+    animation: 2s appear;
 }
 
 .fade.ng-leave {
-    opacity: 1;
+    animation: 1s disappear;
 }
 
-.fade.ng-leave.ng-leave-active {
-    opacity: 0;
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes disappear {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
