@@ -2,7 +2,7 @@ html         { overflow-y:hidden; }
 
 /* make our pages full width and full height */
 /* positioned absolutely so that the pages can overlap each other as they enter and leave */
-.page { 
+.page        { 
     font-family: Helvetica;
     font-size: 80px;
     bottom:0; 

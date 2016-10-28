@@ -1,5 +1,8 @@
-var helloWorldApp = angular.module('helloWorldApp', 
-	['ngRoute', 'ngAnimate', 'helloWorldControllers']);
+var helloWorldApp = angular.module('helloWorldApp', [
+	'ngRoute', 
+	'ngAnimate', 
+	'helloWorldControllers'
+	]);
 
 helloWorldApp.config(['$routeProvider',
 	function($routeProvider) {
@@ -16,6 +19,4 @@ helloWorldApp.config(['$routeProvider',
 			templateUrl: 'partials/404.html',
 			controller: 'FourCtrl'
 		});
-
-
 	}]);
