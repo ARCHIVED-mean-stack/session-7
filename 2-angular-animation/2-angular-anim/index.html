@@ -1,73 +1,44 @@
 <!doctype html>
 <html>
+
 <head>
-
-    <title>animation: ng-class</title>
-
-    <script src="https://code.angularjs.org/1.4.2/angular.js"></script>
-
-    <script type="text/javascript">
-    angular.module('myApp', [])
-    .controller('MainCtrl', function($scope){
-    	$scope.boxClass = true;
-    });
+	<title>animation: ng-class</title>
+	<script src="https://code.angularjs.org/1.5.8/angular.js"></script>
+	<script type="text/javascript">
+		angular.module('myApp', [])
+		.controller('MainCtrl', function($scope){
+			$scope.boxClass = true;
+		});
     </script>
-
-<style>
-.box { margin: 20px auto; 
-	background: #5fcf80;
-	width: 150px;
-	height: 150px;
-}
-.circle {
-	transform: rotate(360deg);
-	background: #9351a6;
-	border-radius: 50%;
-	margin: 20px auto; 
-	width: 150px;
-	height: 150px;
-}
-.rotate {
-	transition: all 2s linear;
-}
-</style>
-
+	<style>
+		.box {
+			margin: 50px auto;
+			background: #5FCF80;
+			width: 150px;
+			height: 150px;
+		}
+		
+		.circle {
+			transform: rotate(360deg);
+			background: #9351a6;
+			border-radius: 50%;
+			margin: 20px auto;
+			width: 150px;
+			height: 150px;
+		}
+		
+		.rotate {
+			transition: all 2s linear;
+		}
+	</style>
 </head>
 
 <body>
-<div ng-app="myApp" ng-controller="MainCtrl">
-	<input type="checkbox" ng-model="boxClass">
-
-	<div class="box rotate" ng-class="{'box': boxClass, 'circle': !boxClass}">
-
+	<div ng-app="myApp" ng-controller="MainCtrl">
+		<input type="checkbox" ng-model="boxClass">
+		<div class="box rotate" ng-class="{'box': boxClass, 'circle': !boxClass}">
+		</div>
 	</div>
-
-</div>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
