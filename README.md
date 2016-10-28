@@ -4,9 +4,10 @@
 
 ###Simple CSS Animation
 
-Using `:hover` and the transition property
+Using `:hover` and the transition property.
 
-```html<!doctype html>
+```html
+<!doctype html>
 <html>
 
 <head>
