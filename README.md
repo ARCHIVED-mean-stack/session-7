@@ -91,7 +91,7 @@ Unchecked:
 <div class="rotate circle" ng-class="{'box': boxClass, 'circle': !boxClass} "></div>
 ```
 
-###Angular Animate
+###Angular Animate 3
 
 $animate is a service that supports directives that are built into Angular. This is available without any other configuration, and allows us to create animations in plain CSS. To use animations in this way, you do not need to include $animate in your controller; just include ngAnimate as a dependency of your Angular module.
 
@@ -106,25 +106,21 @@ Angular will automatically detect that CSS is attached to an animation when the 
 Build an example of using CSS3 transitions to animate a ngRepeat directive
 
 ```html
-<div ng-app="myApp" ng-controller="ItemCtrl">
+<div>
 	<h1>Pirate Day</h1>
 	<ul>
-		<li ng-repeat="item in items" class="fade">
+		<li class="fade">
 			{{ item.name }}
-			<span ng-click="removeItem($index)">X</span>
+			<span>X</span>
 		</li>
 	</ul>
-	<input type="text" ng-model="item.name">
+	<input type="text">
 </div>
 ```
-CSS
+
+Add:
 
 ```css
-li span {
-    float: right;
-    cursor: pointer;
-}
-
 .fade {
     transition: all .2s linear;
 }
@@ -146,7 +142,21 @@ li span {
 }
 ```
 
+```html
+<div ng-app="myApp" ng-controller="ItemCtrl">
+	<h1>Pirate Day</h1>
+	<ul>
+		<li ng-repeat="item in items" class="fade">
+			{{ item.name }}
+			<span ng-click="removeItem($index)">X</span>
+		</li>
+	</ul>
+</div>
+```
+
 JS
+
+`<script src="js/app.js"></script>`
 
 ```js
 angular.module('myApp', ['ngAnimate']).
@@ -169,8 +179,8 @@ Add Item Button
 
 ```html
 ...
-    <input type="text" ng-model="item.name" />
-    	<button ng-click="addItem()">Add Item</button>
+<input type="text" ng-model="item.name" />
+<button ng-click="addItem()">Add Item</button>
 ...
 ```
 
@@ -183,7 +193,7 @@ $scope.addItem = function() {
   };
 ```
 
-###Angular CSS Animations
+###Angular CSS Animations 4
 
 * same JS as previous example
 * Same HTML as previous example
@@ -285,7 +295,6 @@ var app = angular.module('myApp', ['ngAnimate'])
 We can get rid of any CSS we previously had on the .fade class, but we still need some kind of class to register the animation on. So, for continuity's sake we use the .fade class.
 
 Basically, what happens here is that Angular will register your animation functions and call them on that specific element when that event takes place on that directive. For example, it will call your enter animation function when a new item enters an ngRepeat.
-
 
 
 ##Angular Animation and Routing
