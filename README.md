@@ -119,6 +119,40 @@ Build an example of using CSS3 transitions to animate a ngRepeat directive
 </div>
 ```
 
+```js
+angular.module('myApp', ['ngAnimate']).
+	controller('ItemCtrl', function($scope){
+		$scope.items = [
+		{name: "Vessel"},
+		{name: "Booty"},
+		{name: "Loot"},
+		{name: "Pipe"},
+		{name: "Treasure"},
+		{name: "Arrgh"}
+		];
+		$scope.removeItem = function(index) {
+			$scope.items.splice(index, 1);
+		}
+	});
+```
+$index is a way to show which iteration of a loop you’re in.
+
+```html
+<div ng-app="myApp" ng-controller="ItemCtrl">
+	<h1>Pirate Day</h1>
+	<ul>
+		<li ng-repeat="item in items" class="fade">
+			{{ item.name }}
+			<span ng-click="removeItem($index)">X</span>
+		</li>
+	</ul>
+</div>
+```
+
+JS
+
+`<script src="js/app.js"></script>`
+
 Add:
 
 ```css
@@ -141,39 +175,6 @@ Add:
 .fade.ng-leave.ng-leave-active {
     opacity: 0;
 }
-```
-
-```html
-<div ng-app="myApp" ng-controller="ItemCtrl">
-	<h1>Pirate Day</h1>
-	<ul>
-		<li ng-repeat="item in items" class="fade">
-			{{ item.name }}
-			<span ng-click="removeItem($index)">X</span>
-		</li>
-	</ul>
-</div>
-```
-
-JS
-
-`<script src="js/app.js"></script>`
-
-```js
-angular.module('myApp', ['ngAnimate']).
-	controller('ItemCtrl', function($scope){
-		$scope.items = [
-		{name: "Vessel"},
-		{name: "Booty"},
-		{name: "Loot"},
-		{name: "Pipe"},
-		{name: "Treasure"},
-		{name: "Arrgh"}
-		];
-		$scope.removeItem = function(index) {
-			$scope.items.splice(index, 1);
-		}
-	});
 ```
 
 Add Item Button
