@@ -269,9 +269,9 @@ $scope.bottomToTop = function() {
 
 ###JavaScript animations (uses jQuery)
 
-JavaScript animation has one major advantage — JavaScript has more support in older browsers. If you are targeting modern browsers, then this won't be an issue, but if you need to support browsers that do not support CSS transitions, then you can easily register a JavaScript animation with Angular.
+Note - this is included for reference only. Since modern brwsers have sufficient support for css animations it is no longer necessary to perform js animations in most cases. If you are targeting modern browsers, then this won't be an issue, but if you need to support browsers that do not support CSS transitions, then you can easily register a JavaScript animation with Angular.
 
-When you include ngAnimate as a dependency of your Angular module, it adds the animation method to the module API. You can now use it to register your JavaScript animations and tap into Angular hooks in built-in directives like ngRepeat. This method takes two arguments: className(string) and animationFunction(function).
+When you include ngAnimate as a dependency of your Angular module, it adds the animation method to the module. You can now use it to register your JavaScript animations and tap into Angular hooks in built-in directives like ngRepeat. This method takes two arguments: className(string) and animationFunction(function).
 
 The className parameter is the class that you are targeting, and the animation function can be an anonymous function that will receive both the element and done parameters when it is called. The element parameter is just that, the element as a jqLite object, and the done parameter is a function that you need to call when your animation is finished running so that angular can continue on it's way and knows to trigger that the event has been completed.
 
@@ -328,6 +328,7 @@ Basically, what happens here is that Angular will register your animation functi
 
 ##Angular Animation and Routing
 
+While the example may seem of limited use, this form of animation is important for modern interface design - especially on devices such as phones.
 
 ```html
 <!DOCTYPE html>
