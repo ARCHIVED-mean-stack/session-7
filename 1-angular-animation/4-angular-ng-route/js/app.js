@@ -8,15 +8,15 @@ helloWorldApp.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider
 		.when('/', {
-			templateUrl: 'partials/main.html',
+			templateUrl: 'templates/main.html',
 			controller: 'MainCtrl'
 		})
 		.when('/show', {
-			templateUrl: 'partials/show.html',
+			templateUrl: 'templates/show.html',
 			controller: 'ShowCtrl'
 		})
 		.otherwise({
-			templateUrl: 'partials/404.html',
+			templateUrl: 'templates/404.html',
 			controller: 'FourCtrl'
 		});
 	}]);

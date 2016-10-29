@@ -117,7 +117,7 @@ Unchecked:
 <div class="rotate circle" ng-class="{'box': boxClass, 'circle': !boxClass} "></div>
 ```
 
-###Angular Animate with ngAnimate
+###Angular Animation with ngAnimate
 
 $animate is a service that supports directives built into Angular that allow us to create animations using CSS. 
 
@@ -222,7 +222,7 @@ $scope.addItem = function() {
   };
 ```
 
-###Angular CSS Animations 4
+###Angular CSS Animation
 
 * same JS as previous example
 * Same HTML as previous example
