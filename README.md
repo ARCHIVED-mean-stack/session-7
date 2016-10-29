@@ -25,10 +25,13 @@ Using `:hover` and the transition property.
 			height: 150px;
 			transition: all 2s ease-in-out;
 		}
+
 		.box:hover {
-			transform: rotate(360deg);
 			background: #9351A6;
 			border-radius: 50%;
+			width: 150px;
+			height: 150px;
+			transform: rotate(360deg);
 			transition: all 1s ease-in-out;
 		}
 	</style>
@@ -44,12 +47,14 @@ Using `:hover` and the transition property.
 
 ###Angular Animation 2
 
-Instead of doing a transition on :hover, we can create animation by binding transitions to a class, `.rotate`, and create a class for both the "box" and "circle" states of the div. This enables us to switch between classes using the ng-class directive built into Angular (NB - not part of ng-animate but part of core ng).
+Instead of doing a transition on :hover, we create animation by binding transitions to a class, `.rotate`, and create a class for both the "box" and "circle" states of the div. 
+
+This enables us to switch between classes using the ng-class directive built into Angular (part of core ng).
 
 ```html
-	<div ng-app="myApp" ng-controller="MainCtrl">
-		<input type="checkbox" ng-model="boxClass">
-		<div class="box rotate" ng-class="{'box': boxClass, 'circle': !boxClass}">
+	<div>
+		<input type="checkbox">
+		<div class="rotate">
 		</div>
 	</div>
 ```
@@ -63,12 +68,12 @@ Instead of doing a transition on :hover, we can create animation by binding tran
 }
 
 .circle {
-	transform: rotate(360deg);
 	background: #9351a6;
 	border-radius: 50%;
 	margin: 20px auto;
 	width: 150px;
 	height: 150px;
+	transform: rotate(360deg);
 }
 
 .rotate {
@@ -76,7 +81,17 @@ Instead of doing a transition on :hover, we can create animation by binding tran
 }
 ```
 
-bind the boolean value that is attached to $scope.boxClass to whether or not the element should have the .box or .circle class
+Note: you can change the class in the inspector to see the animation.
+
+
+```html
+	<div ng-app="myApp" ng-controller="MainCtrl">
+		<input type="checkbox" ng-model="boxClass">
+		<div class="rotate" ng-class="{'box': boxClass, 'circle': !boxClass}">
+		</div>
+	</div>
+```
+
 
 ```js
 angular.module('myApp', [])
@@ -85,7 +100,12 @@ angular.module('myApp', [])
 });
 ```
 
-Checked:
+Note - for brevity we are not creating components. 
+
+bind the boolean value that is attached to $scope.boxClass to whether or not the element should have the .box or .circle class
+
+
+Checked (default) - boxClass is true and `box` is inserted into the class statement:
 
 ```html
 <div class="box rotate" ng-class="{'box': boxClass, 'circle': !boxClass} "></div>
@@ -99,17 +119,19 @@ Unchecked:
 
 ###Angular Animate 3
 
-$animate is a service that supports directives that are built into Angular. This is available without any other configuration, and allows us to create animations in plain CSS. To use animations in this way, you do not need to include $animate in your controller; just include ngAnimate as a dependency of your Angular module.
+$animate is a service that supports directives built into Angular that allow us to create animations using CSS. 
 
-Once you include ngAnimate in your module, there is a change in how Angular handles certain built-in directives. Angular will begin to hook into and monitor these directives, and add special classes to the element on the firing of certain events. For example, when you add, move, or remove an item from an array which is being used by the ngRepeat directive, Angular will now catch that event, and add a series of classes to that element in the ngRepeat.
+Once you include ngAnimate in your module, there is a change in how Angular handles certain built-in directives. Angular will hook into and monitor these directives and add special classes to the element on the firing of certain events. 
 
-The attached CSS classes take the form of ng-{EVENT} and ng-{EVENT}-active for structural events like enter, move, or leave. But, for class-based animations, it takes the form of {CLASS}-add, {CLASS}-add-active, {CLASS}-remove, and {CLASS}-remove-active. The exceptions to these rules are ng-hide and ng-show. Both of these directives have add and remove events that are triggered, just like ng-class, but they both share the .ng-hide class, which is either added or removed when appropriate. You will also see ngAnimate add a .ng-animate class to some of these directives on animation.
+For example, when you add, move, or remove an item from an array which is being used by the ngRepeat directive, Angular will catch that event and add a series of classes to the element in the ngRepeat.
 
-A table that illustrates some of the built-in directives, the events that fire, and classes that are temporarily added when you add ngAnimate to your project:
+The attached CSS classes take the form of ng-{EVENT} and ng-{EVENT}-active for structural events like enter, move, or leave. But, for class-based animations, it takes the form of {CLASS}-add, {CLASS}-add-active, {CLASS}-remove, and {CLASS}-remove-active. 
+
+Here's [documentation with a table](https://docs.angularjs.org/api/ngAnimate) that illustrate some of the built-in directives, the events that fire, and classes that are temporarily added when you add ngAnimate to your project.
 ￼
 Angular will automatically detect that CSS is attached to an animation when the animation is triggered, and add the .ng-{EVENT}-active class until the animation has run its course. It will then remove that class, and any other added classes, from the DOM.
 
-Build an example of using CSS3 transitions to animate a ngRepeat directive
+Build an example of using CSS3 transitions to animate a ngRepeat directive:
 
 ```html
 <div>
