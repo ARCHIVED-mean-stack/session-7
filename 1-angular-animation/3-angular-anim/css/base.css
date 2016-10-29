@@ -62,34 +62,34 @@ li span {
 
 .fade.ng-enter {
     animation: .5s appear;
+    animation-timing-function: ease-in-out;
+    /*animation-delay: 0.5s;*/
 }
 
 .fade.ng-leave {
     animation: .5s disappear;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0.5s;
 }
 
 @keyframes appear {
     from {
-        margin-bottom: 0rem;
-        height: 0px;
+        transform: translateX(400px);
         opacity: 0;
     }
     to {
         opacity: 1;
-        margin-bottom: 1rem;
-        height: auto;
+        transform: translateX(0);
     }
 }
 
 @keyframes disappear {
     from {
-        margin-bottom: 1rem;
-        height: auto;
+        transform: translateX(0);
         opacity: 1;
     }
     to {
-        margin-bottom: 0rem;
-        height: 0px;
+        transform: translateX(-400px);
         opacity: 0;
     }
 }
