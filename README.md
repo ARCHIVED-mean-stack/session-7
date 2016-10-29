@@ -2,7 +2,7 @@
 
 http://daniel.deverell.com/mean-fall-2016/ng-animate-sample/#/
 
-The inspiration for this was taken from the [collection of page transitions](http://tympanus.net/codrops/2013/05/07/a-collection-of-page-transitions/).
+The inspiration for this was taken from this [collection of page transitions](http://tympanus.net/codrops/2013/05/07/a-collection-of-page-transitions/).
 
 
 ##Animation
