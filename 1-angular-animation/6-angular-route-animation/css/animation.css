@@ -1,0 +1,29 @@
+/*html         { overflow-y:hidden; }*/
+
+/* make our pages full width and full height */
+/* positioned absolutely so that the pages can overlap each other as they enter and leave */
+.page { 
+    font-family: Helvetica, sans-serif;
+    font-size: 80px;
+    bottom:0;
+    padding-top:200px;
+    position:absolute; 
+    text-align:center;
+    top:0;  
+    width:100%; 
+}
+
+.page h1    { font-size:60px; }
+.page a     { margin-top:50px; text-decoration: none; color: #777;}
+
+
+/* pages with pageClass */
+.page-home      { background:#00D0BC; color:#333; }
+.page-about     { background:#E59400; color:#222; }
+.page-404       { background:#ffa6bb; color:#9e0000; }
+
+/* chained to use leave and enter events  */
+
+.page.ng-leave  { z-index:9999; }
+.page.ng-enter  { z-index:8888; }
+
