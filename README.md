@@ -45,7 +45,7 @@ Using `:hover` and the transition property.
 </html>
 ```
 
-###Angular Animation 2
+###Angular CSS Animation
 
 Instead of doing a transition on :hover, we create animation by binding transitions to a class, `.rotate`, and create a class for both the "box" and "circle" states of the div. 
 
@@ -117,7 +117,7 @@ Unchecked:
 <div class="rotate circle" ng-class="{'box': boxClass, 'circle': !boxClass} "></div>
 ```
 
-###Angular Animate 3
+###Angular Animate with ngAnimate
 
 $animate is a service that supports directives built into Angular that allow us to create animations using CSS. 
 
@@ -162,7 +162,7 @@ angular.module('myApp', ['ngAnimate']).
 		}
 	});
 ```
-$index is a way to show which iteration of a loop you’re in.
+$index captures the iteration of the ng-repeat you’re. Here we send it to our function in the controller.
 
 ```html
 <div ng-app="myApp" ng-controller="ItemCtrl">
@@ -255,7 +255,7 @@ CSS3 animations are more complicated than transitions, but have much of the same
 }
 ```
 
-Add move to top (see http://www.bennadel.com/?site-photo=414 for explanations of unshift, pop, etc.)
+
 
 ```html
     <button ng-click="bottomToTop()">Move Bottom Item to Top</button>
@@ -328,7 +328,6 @@ Basically, what happens here is that Angular will register your animation functi
 
 ##Angular Animation and Routing
 
-The inspiration for this was taken from the [collection of page transitions](http://tympanus.net/codrops/2013/05/07/a-collection-of-page-transitions/).
 
 ```html
 <!DOCTYPE html>
