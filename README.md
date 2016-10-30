@@ -222,12 +222,85 @@ $scope.addItem = function() {
   };
 ```
 
+Push() appends elements to the end of the given array. When push() takes multiple arguments they are appended in a left-to-right order.
+
+```js
+var data = [ "X" ];
+data.push( "A" );
+data.push( "B", "C" );
+console.log( data );
+["X", "A", "B", "C"]
+
+```
+
+###Create and Implement Component
+
+app.module.js on top level
+
+`angular.module('myApp', ['manageList', 'ngAnimate']);`
+
+manage-list.module.js in a new manage-list directory
+
+`angular.module('manageList', []);`
+
+manage-list.template.html
+
+```html
+<h1>Pirate Day</h1>
+<ul>
+	<li ng-repeat="item in $ctrl.items" class="fade">
+		{{ item.name }}
+		<span ng-click="$ctrl.removeItem($index)">X</span>
+	</li>
+</ul>
+
+<input type="text" ng-model="$ctrl.item.name" />
+<button ng-click="$ctrl.addItem()">Add Item</button>
+```
+
+manage-list.component.js 
+
+```js
+angular.module('myApp').component('manageList', {
+
+	templateUrl: 'manage-list/manage-list.template.html',
+
+	controller: function ItemCtrl() {
+
+		var self = this;
+		self.items = [
+			{ name: "Vessel" },
+			{ name: "Booty" },
+			{ name: "Loot" },
+			{ name: "Pipe" },
+			{ name: "Treasure" },
+			{ name: "Arrgh" }
+		];
+		self.removeItem = function (index) {
+			self.items.splice(index, 1);
+		}
+		self.addItem = function () {
+			self.items.push(self.item);
+			self.item = {};
+		}
+	}
+});
+```
+
+Finally, in index.html
+
+```
+<div ng-app="myApp">
+	<manage-list></manage-list>
+</div>
+```
+
 ###Angular CSS Animation
 
 * same JS as previous example
 * Same HTML as previous example
 
-CSS3 animations are more complicated than transitions, but have much of the same implementation on the ngAnimate side. However, in the CSS we use an @keyframes rule to define our animation. This is the same that we did our basic transition earlier, except we use the animation keyword in our CSS and give the animation a name:
+CSS3 animations are more complicated than transitions, but have the same implementation on the ngAnimate side. In the CSS we use an @keyframes rule to define our animation. This is the same that as our earlier transition except we use the animation keyword in our CSS and give the animation a name:
 
 ```css
 .fade.ng-enter {
@@ -256,7 +329,6 @@ CSS3 animations are more complicated than transitions, but have much of the same
 ```
 
 
-
 ```html
     <button ng-click="bottomToTop()">Move Bottom Item to Top</button>
 ```
@@ -266,6 +338,9 @@ $scope.bottomToTop = function() {
   $scope.items.unshift($scope.items.pop());
 };
 ```
+
+The pop() method pulls the last element off of the given array and returns it. This alters the array on which the method was called.
+
 
 ###JavaScript animations (uses jQuery)
 
@@ -335,7 +410,6 @@ While the example may seem of limited use, this form of animation is important f
 <html ng-app="helloWorldApp">
 <head>
 	<title>Class Review</title>
-	<link rel="stylesheet" type="text/css" href="css/animation.css">
 	<script src="https://code.angularjs.org/1.5.8/angular.js"></script>       
 	<script src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
 	<script src="https://code.angularjs.org/1.5.8/angular-animate.js"></script>
@@ -345,7 +419,7 @@ While the example may seem of limited use, this form of animation is important f
 
 </head>
 <body>
-	<div class="page {{ pageClass }}" ng-view></div>
+	
 </body>
 </html> 
 ```
@@ -363,15 +437,15 @@ helloWorldApp.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider
 		.when('/', {
-			templateUrl: 'partials/main.html',
+			templateUrl: 'templates/main.html',
 			controller: 'MainCtrl'
 		})
 		.when('/show', {
-			templateUrl: 'partials/show.html',
+			templateUrl: 'templates/show.html',
 			controller: 'ShowCtrl'
 		})
 		.otherwise({
-			templateUrl: 'partials/404.html',
+			templateUrl: 'templates/404.html',
 			controller: 'FourCtrl'
 		});
 	}]);
@@ -426,15 +500,87 @@ ngAnimate Works On: ngRepeat, ngInclude, ngIf, ngSwitch, ngShow, ngHide, ngView,
 
 Examine animation.css
 
-* make our pages be full width and full height
-* positioned absolutely so that the pages can overlap each other as they enter and leave
-* each page will have their very own ng-enter and ng-leave animation
-
-Move it to the working directory and link it
 
 ```
 <link rel="stylesheet" type="text/css" href="animation.css">
 ```
+
+* make our pages be full width and full height
+* positioned absolutely so that the pages can overlap each other as they enter and leave
+* each page will have their very own ng-enter and ng-leave animation
+
+```css
+/* chained to use leave and enter events  */
+
+.page.ng-leave  { z-index:9999; }
+.page.ng-enter  { z-index:8888; }
+
+/* page specific animations */
+
+/* 1 home */
+.page-home.ng-leave         {
+    transform-origin: 0% 0%;
+    animation: rotateFall 1s both ease-in;
+}
+.page-home.ng-enter         {  
+    animation:scaleUp 0.5s both ease-in;    
+}
+
+/* 2 about */
+.page-about.ng-leave        {
+    animation:slideOutLeft 0.5s both ease-in;   
+}
+.page-about.ng-enter        {  
+    animation:slideInRight 0.5s both ease-in;    
+}
+
+/* 3 404 */
+.page-404.ng-leave      {
+    transform-origin: 50% 50%;
+    animation: rotateOutNewspaper .5s both ease-in;
+}
+.page-404.ng-enter      { 
+    animation:slideInUp 0.5s both ease-in;  
+}
+
+/* leaving animations - rotate and fall */
+@keyframes rotateFall {
+    0% { transform: rotateZ(0deg); }
+    20% { transform: rotateZ(10deg); animation-timing-function: ease-out; }
+    40% { transform: rotateZ(17deg); }
+    60% { transform: rotateZ(16deg); }
+    100% { transform: translateY(100%) rotateZ(17deg); }
+}
+
+/* entering animations - scale up */
+@keyframes scaleUp {
+    from        { opacity: 0.3; transform: scale(0.8); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(100%); }
+    to      { transform: translateX(0); }
+}
+
+/* slide in from the bottom */
+@keyframes slideInUp {
+    from    { transform:translateY(100%); }
+    to      { transform: translateY(0); }
+}
+
+/* slide out */
+@keyframes slideOutLeft {
+    to      { transform: translateX(-100%); }
+}
+
+/* rotate out */
+@keyframes rotateOutNewspaper {
+    to { transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+}
+
+```
+
 
 
 
