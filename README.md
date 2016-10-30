@@ -414,9 +414,6 @@ While the example may seem of limited use, this form of animation is important f
 	<script src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
 	<script src="https://code.angularjs.org/1.5.8/angular-animate.js"></script>
 
-	<script src="js/app.js"></script>
-	<script src="js/controllers.js"></script>
-
 </head>
 <body>
 	
@@ -451,6 +448,10 @@ helloWorldApp.config(['$routeProvider',
 	}]);
 ```
 
+Link it:
+
+`<script src="js/app.js"></script>`
+
 Develop the controller
 
 ```js
@@ -474,6 +475,10 @@ helloWorldControllers.controller('FourCtrl', ['$scope',
         $scope.message = "404 - you are lost!";
     }]);
 ```
+
+Link it
+`<script src="js/controllers.js"></script>`
+
 
 ###Page Class
 
