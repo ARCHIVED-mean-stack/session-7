@@ -45,6 +45,41 @@ Using `:hover` and the transition property.
 </html>
 ```
 
+Alternatively you can use an additional class to bind the animation:
+
+```
+
+	<style>
+	.box {
+		margin: 50px auto;
+		background: #5FCF80;
+		width: 150px;
+		height: 150px;
+	}
+	.box:hover {
+		transform: rotate(360deg);
+		background: #9351A6;
+		border-radius: 50%;
+	}
+	.rotate {
+		transition: all 2s ease-in-out;
+	}
+	.rotate:hover {
+		transition: all 1s ease-in-out;
+	}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="box rotate"></div>
+	</div>
+
+</body>
+
+```
+
 ###Angular CSS Animation
 
 Instead of doing a transition on :hover, we create animation by binding transitions to a class, `.rotate`, and create a class for both the "box" and "circle" states of the div. 
@@ -52,9 +87,11 @@ Instead of doing a transition on :hover, we create animation by binding transiti
 This enables us to switch between classes using the ng-class directive built into Angular (part of core ng).
 
 ```html
-	<div>
+<script src="https://code.angularjs.org/1.5.8/angular.js"></script>
+...
+	<div class="container">
 		<input type="checkbox">
-		<div class="rotate">
+		<div class="box rotate">
 		</div>
 	</div>
 ```
@@ -142,9 +179,11 @@ Build an example of using CSS3 transitions to animate a ngRepeat directive:
 			<span>X</span>
 		</li>
 	</ul>
-	<input type="text">
 </div>
 ```
+JS
+
+`<script src="js/app.js"></script>`
 
 ```js
 angular.module('myApp', ['ngAnimate']).
@@ -162,7 +201,8 @@ angular.module('myApp', ['ngAnimate']).
 		}
 	});
 ```
-$index captures the iteration of the ng-repeat you’re. Here we send it to our function in the controller.
+
+The splice() array method adds/removes items to/from an array, and returns the removed item(s). `index` is the position to remove and `1` is the number of items.
 
 ```html
 <div ng-app="myApp" ng-controller="ItemCtrl">
@@ -176,15 +216,13 @@ $index captures the iteration of the ng-repeat you’re. Here we send it to our 
 </div>
 ```
 
-JS
+$index captures the iteration of the ng-repeat you’re. Here we send it to our function in the controller where it is used for splice().
 
-`<script src="js/app.js"></script>`
-
-Add:
+Add to existing css:
 
 ```css
 .fade {
-    transition: all .2s linear;
+    transition: all .5s linear;
 }
 
 .fade.ng-enter {
