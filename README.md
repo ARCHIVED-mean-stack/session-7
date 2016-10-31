@@ -366,7 +366,7 @@ CSS3 animations are more complicated than transitions, but have the same impleme
 }
 ```
 
-Add trnasforms:
+Add transforms:
 
 ```css
 @keyframes appear {
@@ -483,9 +483,11 @@ Basically, what happens here is that Angular will register your animation functi
 
 While the example may seem of limited use, this form of animation is important for modern interface design - especially on devices such as phones.
 
+Declare the add on the html tag:
+
 ```html
 <!DOCTYPE html>
-<html ng-app="helloWorldApp">
+<html ng-app="pagesApp">
 <head>
 	<title>Class Review</title>
 	<script src="https://code.angularjs.org/1.5.8/angular.js"></script>       
@@ -502,13 +504,12 @@ While the example may seem of limited use, this form of animation is important f
 Develop the app.js file.
 
 ```js
-var helloWorldApp = angular.module('helloWorldApp', [
+var pagesApp = angular.module('pagesApp', [
 	'ngRoute', 
-	'ngAnimate', 
-	'helloWorldControllers'
+	'pageControllers'
 	]);
 
-helloWorldApp.config(['$routeProvider',
+pagesApp.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider
 		.when('/', {
@@ -530,24 +531,24 @@ Link it:
 
 `<script src="js/app.js"></script>`
 
-Develop the controller
+Develop the controllers
 
 ```js
-var helloWorldControllers = angular.module('helloWorldControllers', []);
+var pageControllers = angular.module('pageControllers', []);
 
-helloWorldControllers.controller('MainCtrl', ['$scope',
+pageControllers.controller('MainCtrl', ['$scope',
     function MainCtrl($scope) {
     	$scope.pageClass = 'page-home';
         $scope.message = "Hello World";
     }]);
 
-helloWorldControllers.controller('ShowCtrl', ['$scope',
+pageControllers.controller('ShowCtrl', ['$scope',
     function ShowCtrl($scope) {
     	$scope.pageClass = 'page-about';
         $scope.message = "Show The World";
     }]);
 
-helloWorldControllers.controller('FourCtrl', ['$scope',
+pageControllers.controller('FourCtrl', ['$scope',
     function FourCtrl($scope) {
     	$scope.pageClass = 'page-404';
         $scope.message = "404 - you are lost!";
@@ -570,10 +571,10 @@ Add the page class directive and examine the HTML in inspector
 Inject ngAnimate into the module
 
 ```js
-var helloWorldApp = angular.module('helloWorldApp', [
+var pagesApp = angular.module('pagesApp', [
     'ngRoute',   
     'ngAnimate', 
-    'helloWorldControllers' 
+    'pageControllers' 
 ]);
 ```
 
