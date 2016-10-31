@@ -366,18 +366,58 @@ CSS3 animations are more complicated than transitions, but have the same impleme
 }
 ```
 
+Add trnasforms:
+
+```css
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+}
+```
+
+Add array.pop method. 
+
+Not:
 
 ```html
     <button ng-click="bottomToTop()">Move Bottom Item to Top</button>
 ```
 
+But:
+
+```html
+    <button $ctrl.ng-click="bottomToTop()">Move Bottom Item to Top</button>
+```
+Not:
 ```js
 $scope.bottomToTop = function() {
   $scope.items.unshift($scope.items.pop());
 };
 ```
 
-The pop() method pulls the last element off of the given array and returns it. This alters the array on which the method was called.
+But:
+```js
+self.bottomToTop = function() {
+	alert('tetr');
+	self.items.unshift(self.items.pop());
+};
+```
+
+The pop() method pulls the last element off of the given array and returns it. Unshift adds new items to the beginning of an array.
 
 
 ###JavaScript animations (uses jQuery)
