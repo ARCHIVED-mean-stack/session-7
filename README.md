@@ -587,7 +587,9 @@ Examine animation.css
 ```
 
 
+##Visualisation
 
+![Image of chart](https://github.com/mean-fall-2016/session7/blob/master/viz.png)
 
 
 
