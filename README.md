@@ -9,7 +9,7 @@ The inspiration for this was taken from this [collection of page transitions](ht
 
 ###Simple CSS Animation
 
-Using `:hover` and the transition property.
+Using `:hover` and the transition property. [Samples](http://james-star.com/answers/en/css3-hover-effect-transitions-transformations-and-animations/). A [nice introduction](https://robots.thoughtbot.com/transitions-and-transforms) to the css transition and transform properties.
 
 ```html
 <!doctype html>
