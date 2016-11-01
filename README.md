@@ -854,6 +854,8 @@ Add an animated page transition to either the materials (Brooklyn Eats) from ses
 
 ##Reading
 
+[Documentation](https://docs.angularjs.org/api/ngAnimate) for Angular Animation.
+
 Dickey - Write Modern Web Apps with the MEAN Stack: Mongo, Express, AngularJS and Node.js, chapter 1-7. Please attempt to implement his sample app on your computer. Here's his [Github repo with sample code](https://github.com/dickeyxxx/mean-sample). Be sure to look at the branches (they correspond to chapter numbers) and don't forget to run `sudo npm install` when running the sample code.
 
 If you are interested in svg and visualisation try running through [this exercise](https://css-tricks.com/handmade-svg-bar-chart-featuring-svg-positioning-gotchas/) using svg for developing bar charts.
