@@ -849,7 +849,7 @@ style="height:{{bar.value / max * height }}px; width:{{width / data.length - 8 }
 
 ##Homework
 
-Add an animated page transition to either the materials Brooklyn Eats from session 6 - or - your own single page application.
+Add an animated page transition to either the materials (Brooklyn Eats) from session 6 - or - your own single page application.
 
 
 ##Reading
