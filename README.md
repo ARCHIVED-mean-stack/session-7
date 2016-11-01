@@ -24,13 +24,12 @@ Using `:hover` and the transition property.
 			width: 150px;
 			height: 150px;
 			transition: all 2s ease-in-out;
+			cursor: pointer;
 		}
 
 		.box:hover {
 			background: #9351A6;
 			border-radius: 50%;
-			width: 150px;
-			height: 150px;
 			transform: rotate(360deg);
 			transition: all 1s ease-in-out;
 		}
@@ -49,7 +48,7 @@ Alternatively you can use an additional class to bind the animation:
 
 ```
 
-	<style>
+<style>
 	.box {
 		margin: 50px auto;
 		background: #5FCF80;
@@ -67,7 +66,7 @@ Alternatively you can use an additional class to bind the animation:
 	.rotate:hover {
 		transition: all 1s ease-in-out;
 	}
-	</style>
+</style>
 </head>
 
 <body>
@@ -80,7 +79,7 @@ Alternatively you can use an additional class to bind the animation:
 
 ```
 
-###Angular CSS Animation
+###Angular CSS Class Animation
 
 Instead of doing a transition on :hover, we create animation by binding transitions to a class, `.rotate`, and create a class for both the "box" and "circle" states of the div. 
 
@@ -89,21 +88,16 @@ This enables us to switch between classes using the ng-class directive built int
 ```html
 <script src="https://code.angularjs.org/1.5.8/angular.js"></script>
 ...
-	<div class="container">
-		<input type="checkbox">
-		<div class="box rotate">
-		</div>
-	</div>
+<div class="container">
+	<input type="checkbox">
+	...
+</div>
 ```
 
 ```css
 .box {
-	margin: 50px auto;
-	background: #5FCF80;
-	width: 150px;
-	height: 150px;
+	...
 }
-
 .circle {
 	background: #9351a6;
 	border-radius: 50%;
@@ -112,7 +106,6 @@ This enables us to switch between classes using the ng-class directive built int
 	height: 150px;
 	transform: rotate(360deg);
 }
-
 .rotate {
 	transition: all 2s linear;
 }
@@ -120,15 +113,7 @@ This enables us to switch between classes using the ng-class directive built int
 
 Note: you can change the class in the inspector to see the animation.
 
-
-```html
-	<div ng-app="myApp" ng-controller="MainCtrl">
-		<input type="checkbox" ng-model="boxClass">
-		<div class="rotate" ng-class="{'box': boxClass, 'circle': !boxClass}">
-		</div>
-	</div>
-```
-
+We are animating the margin as well here.
 
 ```js
 angular.module('myApp', [])
@@ -137,10 +122,16 @@ angular.module('myApp', [])
 });
 ```
 
-Note - for brevity we are not creating components. 
 
-bind the boolean value that is attached to $scope.boxClass to whether or not the element should have the .box or .circle class
+```html
+<div ng-app="myApp" ng-controller="MainCtrl">
+	<input type="checkbox" ng-model="boxClass">
+	<div class="rotate" ng-class="{'box': boxClass, 'circle': !boxClass}">
+	</div>
+</div>
+```
 
+Bind the boolean value that is attached to $scope.boxClass to whether or not the element should have the .box or .circle class
 
 Checked (default) - boxClass is true and `box` is inserted into the class statement:
 
@@ -179,9 +170,7 @@ Build an example of using CSS3 transitions to animate a ngRepeat directive:
 	</ul>
 </div>
 ```
-JS
 
-`<script src="js/app.js"></script>`
 
 ```js
 angular.module('myApp', ['ngAnimate']).
@@ -194,13 +183,12 @@ angular.module('myApp', ['ngAnimate']).
 		{name: "Treasure"},
 		{name: "Arrgh"}
 		];
-		$scope.removeItem = function(index) {
-			$scope.items.splice(index, 1);
-		}
 	});
 ```
 
-The splice() array method adds/removes items to/from an array, and returns the removed item(s). `index` is the position to remove and `1` is the number of items.
+Link the new js file:
+
+`<script src="js/app.js"></script>`
 
 ```html
 <div ng-app="myApp" ng-controller="ItemCtrl">
@@ -214,13 +202,29 @@ The splice() array method adds/removes items to/from an array, and returns the r
 </div>
 ```
 
+Add the removeItem function:
+
+```js
+angular.module('myApp', ['ngAnimate']).
+	controller('ItemCtrl', function($scope){
+		$scope.items = [
+		...
+		];
+		$scope.removeItem = function(index) {
+			$scope.items.splice(index, 1);
+		}
+	});
+```
+
+The splice() array method adds/removes items to/from an array, and returns the removed item(s). `index` is the position to remove and `1` is the number of items.
+
 $index captures the iteration of the ng-repeat you’re. Here we send it to our function in the controller where it is used for splice().
 
 Add to existing css:
 
 ```css
 .fade {
-    transition: all .5s linear;
+    transition: all 5s linear;
 }
 
 .fade.ng-enter {
@@ -239,6 +243,8 @@ Add to existing css:
     opacity: 0;
 }
 ```
+
+Inspect a list item to see the classes during the 5s animation.
 
 Add Item Button
 
@@ -269,6 +275,9 @@ console.log( data );
 
 ```
 
+`$scope.item = {};` clears the input field after the item is added.
+
+
 ###Create and Implement Component
 
 app.module.js on top level
@@ -294,7 +303,7 @@ manage-list.template.html
 <button ng-click="$ctrl.addItem()">Add Item</button>
 ```
 
-manage-list.component.js 
+`manage-list.component.js`
 
 ```js
 angular.module('myApp').component('manageList', {
@@ -326,6 +335,13 @@ angular.module('myApp').component('manageList', {
 Finally, in index.html
 
 ```
+
+<script src="app.module.js"></script>
+<script src="manage-list/manage-list.module.js"></script>
+<script src="manage-list/manage-list.component.js"></script>
+
+...
+
 <div ng-app="myApp">
 	<manage-list></manage-list>
 </div>
@@ -339,6 +355,10 @@ Finally, in index.html
 CSS3 animations are more complicated than transitions, but have the same implementation on the ngAnimate side. In the CSS we use an @keyframes rule to define our animation. This is the same that as our earlier transition except we use the animation keyword in our CSS and give the animation a name:
 
 ```css
+/*.fade {
+    transition: all 5.5s linear;
+}*/
+
 .fade.ng-enter {
   animation: 2s appear;
 }
@@ -398,7 +418,7 @@ Not:
 But:
 
 ```html
-    <button $ctrl.ng-click="bottomToTop()">Move Bottom Item to Top</button>
+    <button ng-click="$ctrl.bottomToTop()">Move Bottom Item to Top</button>
 ```
 Not:
 ```js
@@ -410,7 +430,6 @@ $scope.bottomToTop = function() {
 But:
 ```js
 self.bottomToTop = function() {
-	alert('tetr');
 	self.items.unshift(self.items.pop());
 };
 ```
@@ -418,9 +437,11 @@ self.bottomToTop = function() {
 The pop() method pulls the last element off of the given array and returns it. Unshift adds new items to the beginning of an array.
 
 
-###JavaScript animations (uses jQuery)
+###JavaScript animation (uses jQuery)
 
-Note - this is included for reference only. Since modern brwsers have sufficient support for css animations it is no longer necessary to perform js animations in most cases. If you are targeting modern browsers, then this won't be an issue, but if you need to support browsers that do not support CSS transitions, then you can easily register a JavaScript animation with Angular.
+Note - this is included for reference only.
+
+Since modern browsers have sufficient support for css animations it is no longer necessary to perform js animations in most cases, but if you need to support browsers that do not support CSS transitions, then you can register a JavaScript animation with Angular.
 
 When you include ngAnimate as a dependency of your Angular module, it adds the animation method to the module. You can now use it to register your JavaScript animations and tap into Angular hooks in built-in directives like ngRepeat. This method takes two arguments: className(string) and animationFunction(function).
 
@@ -428,22 +449,30 @@ The className parameter is the class that you are targeting, and the animation f
 
 The main thing to grasp is what needs to be returned from the animation function. Angular is going to be looking for an object to be returned with keys that match the names of the events that you want to trigger animations on for that particular directive.
 
-Our ngRepeat example, it would look something like this:
+Our ngRepeat example:
 
-return {
-  enter: function(element, done) {
-    // Animation code goes here
-    // Use done() in your animation callback
-  },
-  move: function(element, done) {
-    // Animation code goes here
-    // Use done() in your animation callback
-  },
-  leave: function(element, done) {
-    // Animation code goes here
-    // Use done() in your animation callback
-  }
-}
+```js
+.animation('.fade', function () {
+    return {
+        enter: function (element, done) {
+            element.css('display', 'none');
+            $(element).fadeIn(1000, function () {
+                done();
+            });
+        },
+        leave: function (element, done) {
+            $(element).fadeOut(1000, function () {
+                done();
+            });
+        },
+        move: function (element, done) {
+            element.css('display', 'none');
+            $(element).slideDown(500, function () {
+                done();
+            });
+        }
+    }
+```
 
 Worth noting that ngRepeat will automatically add the new item to the DOM when it is added to the array, and that said item will be immediately visible. So, if you are trying to achieve a fade in effect with JavaScript, then you need to set the display to none immediately before you fade it in. This is something you could avoid with CSS animations and transitions.
 
