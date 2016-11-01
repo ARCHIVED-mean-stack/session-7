@@ -449,7 +449,7 @@ The className parameter is the class that you are targeting, and the animation f
 
 The main thing to grasp is what needs to be returned from the animation function. Angular is going to be looking for an object to be returned with keys that match the names of the events that you want to trigger animations on for that particular directive.
 
-Our ngRepeat example:
+Our ngRepeat example: 
 
 ```js
 .animation('.fade', function () {
