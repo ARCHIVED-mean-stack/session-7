@@ -663,7 +663,6 @@ First we chain the `.page` class to use leave and enter events:
 @keyframes rotateOutNewspaper {
     to { transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
 }
-
 ```
 
 
@@ -692,7 +691,8 @@ app.controller('graphController', function($scope){
 ```
 
 Add some basic css
-```csshtml {
+```css
+html {
   box-sizing: border-box;
   background-image: -webkit-linear-gradient(top, #023e54, #10aac0);
   min-height: 100%;
@@ -802,7 +802,8 @@ Add the bar data to the view:
 ```
 
 Add display for this to the css
-```css.bar {
+```css
+.bar {
 	background: rgba(146, 84, 164, 0.8);
 	position: absolute;
 	bottom: 0;
@@ -846,74 +847,14 @@ Use it to calculate the max height of the columns in css:
 style="height:{{bar.value / max * height }}px; width:{{width / data.length - 8 }}px; left:{{$index / data.length * width }}px"
 ```
 
-
-
-
-```css
-html {
-  box-sizing: border-box;
-  background-image: -webkit-linear-gradient(top, #023e54, #10aac0);
-  min-height: 100%;
-  height: auto;
-  margin: 0; 
-}
-
-body {
-  font-family: Helvetica, Arial, sans-serif;
-  color: #fff;
-  text-align: center;
-  margin: 0;
-}
-.chart { 
-	border-left: 2px solid #ddd; 
-	border-bottom: 2px solid #ddd;
-	margin: 60px auto;
-	position: relative;
-}
-.y {
-	position: absolute;
-	bottom: 0;
-	padding: 6px;
-	transform-origin: bottom left;
-	transform: rotate(-90deg);
-	text-align: center;
-}
-.x {
-	position: absolute;
-	bottom: -70px;
-	padding: 6px;
-	width: 100%;
-	text-align: center;
-}
-.bar {
-	background: rgba(146, 84, 164, 0.8);
-	position: absolute;
-	bottom: 0;
-}
-.bar:nth-of-type(even) {
-	background: rgba(188, 77, 61, 0.8);
-}
-.value {
-	display: inline-block;
-	margin-top: 10px;
-}
-.label {
-	position: absolute;
-	bottom: -30px;
-	font-size: 10px; 
-	transform: rotate(30deg);
-}
-```
-
-
 ##Homework
 
-
+Add an animated page transition to either the materials Brooklyn Eats from session 6 - or - your own single page application.
 
 
 ##Reading
 
-Dickey - Write Modern Web Apps with the MEAN Stack: Mongo, Express, AngularJS and Node.js, chapter 5. Please attempt to implement his sample app on your computer. Here's his [Github repo with sample code](https://github.com/dickeyxxx/mean-sample). Be sure to look at the branches (they correspond to chapter numbers) and don't forget to run `sudo npm install` when running the sample code.
+Dickey - Write Modern Web Apps with the MEAN Stack: Mongo, Express, AngularJS and Node.js, chapter 1-7. Please attempt to implement his sample app on your computer. Here's his [Github repo with sample code](https://github.com/dickeyxxx/mean-sample). Be sure to look at the branches (they correspond to chapter numbers) and don't forget to run `sudo npm install` when running the sample code.
 
 
 
