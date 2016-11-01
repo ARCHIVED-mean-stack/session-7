@@ -862,7 +862,7 @@ Add the array processor for `$scope.max`
 
 ```
 
-Use it to calculate the max hieght of the columns in css:
+Use it to calculate the max height of the columns in css:
 
 ```html
 style="height:{{bar.value / max * height }}px; width:{{width / data.length - 8 }}px; left:{{$index / data.length * width }}px"
