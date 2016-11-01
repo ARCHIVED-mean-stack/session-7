@@ -156,13 +156,11 @@ Unchecked:
 
 ###Angular Animation with ngAnimate
 
-$animate is a service that supports directives built into Angular that allow us to create animations using CSS. 
-
-Once you include ngAnimate in your module, there is a change in how Angular handles certain built-in directives. Angular will hook into and monitor these directives and add special classes to the element on the firing of certain events. 
+When you include `ngAnimate` in your module, there is a change in how Angular handles certain built-in directives - Angular will monitor these directives and add special classes to the element on the firing of certain events. 
 
 For example, when you add, move, or remove an item from an array which is being used by the ngRepeat directive, Angular will catch that event and add a series of classes to the element in the ngRepeat.
 
-The attached CSS classes take the form of ng-{EVENT} and ng-{EVENT}-active for structural events like enter, move, or leave. But, for class-based animations, it takes the form of {CLASS}-add, {CLASS}-add-active, {CLASS}-remove, and {CLASS}-remove-active. 
+These CSS classes take the form of ng-{EVENT} and ng-{EVENT}-active for structural events like enter, move, or leave. But, for class-based animations, it takes the form of {CLASS}-add, {CLASS}-add-active, {CLASS}-remove, and {CLASS}-remove-active. 
 
 Here's [documentation with a table](https://docs.angularjs.org/api/ngAnimate) that illustrate some of the built-in directives, the events that fire, and classes that are temporarily added when you add ngAnimate to your project.
 ￼
