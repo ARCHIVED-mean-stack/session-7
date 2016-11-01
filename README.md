@@ -451,7 +451,7 @@ The main thing to grasp is what needs to be returned from the animation function
 
 Our ngRepeat example: 
 
-```js
+```html
 .animation('.fade', function () {
     return {
         enter: function (element, done) {
@@ -476,31 +476,6 @@ Our ngRepeat example:
 
 Worth noting that ngRepeat will automatically add the new item to the DOM when it is added to the array, and that said item will be immediately visible. So, if you are trying to achieve a fade in effect with JavaScript, then you need to set the display to none immediately before you fade it in. This is something you could avoid with CSS animations and transitions.
 
-```js
-var app = angular.module('myApp', ['ngAnimate'])
-.animation('.fade', function() {
-  return {
-    enter: function(element, done) {
-      element.css('display', 'none');
-      $(element).fadeIn(1000, function() {
-        done();
-      });
-    },
-    leave: function(element, done) {
-      $(element).fadeOut(1000, function() {
-        done();
-      });
-    },
-    move: function(element, done) {
-      element.css('display', 'none');
-      $(element).slideDown(500, function() {
-        done();
-      });
-    }
-  }
-})
-```
-
 We can get rid of any CSS we previously had on the .fade class, but we still need some kind of class to register the animation on. So, for continuity's sake we use the .fade class.
 
 Basically, what happens here is that Angular will register your animation functions and call them on that specific element when that event takes place on that directive. For example, it will call your enter animation function when a new item enters an ngRepeat.
@@ -508,9 +483,9 @@ Basically, what happens here is that Angular will register your animation functi
 
 ##Angular Animation and Routing
 
-While the example may seem of limited use, this form of animation is important for modern interface design - especially on devices such as phones.
+While the example may seem - at the surface - to be of limited use, this form of animation is important for modern interface design - especially on devices such as phones.
 
-Declare the add on the html tag:
+Declare the app on the html tag:
 
 ```html
 <!DOCTYPE html>
@@ -529,7 +504,7 @@ Develop the app.js file.
 ```js
 var pagesApp = angular.module('pagesApp', [
 	'ngRoute', 
-	'pageControllers'
+	'ngAnimate'
 	]);
 
 pagesApp.config(['$routeProvider',
@@ -601,11 +576,13 @@ var pagesApp = angular.module('pagesApp', [
 ]);
 ```
 
-[ngAnimate](http://docs.angularjs.org/api/ngAnimate) - adds and removes CSS classes to different Angular directives based on if they are entering or leaving the view. For example, when we load up a site, whatever is populated in ng-view gets a .ng-enter class.
+Test using `python -m SimpleHTTPServer 9006` in the browser.
+
+Recall - [ngAnimate](http://docs.angularjs.org/api/ngAnimate) - adds and removes CSS classes to different Angular directives based on if they are entering or leaving the view. For example, when we load up a site, whatever is populated in ng-view gets a .ng-enter class.
 
 ngAnimate Works On: ngRepeat, ngInclude, ngIf, ngSwitch, ngShow, ngHide, ngView, and ngClass
 
-Examine animation.css
+Examine `animation.css`
 
 
 ```
@@ -616,9 +593,10 @@ Examine animation.css
 * positioned absolutely so that the pages can overlap each other as they enter and leave
 * each page will have their very own ng-enter and ng-leave animation
 
-```css
-/* chained to use leave and enter events  */
 
+First we chain the `.page` class to use leave and enter events:
+
+```css
 .page.ng-leave  { z-index:9999; }
 .page.ng-enter  { z-index:8888; }
 
